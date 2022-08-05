@@ -1,5 +1,22 @@
 .box-shadow {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  color: #543884;
+}
+
+.container-auth {
+}
+
+@media screen and (max-width: 450px) {
+  .container-auth {
+    width: 90% !important;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .container-auth {
+    width: 60%;
+    max-width: 400px !important;
+  }
 }
 
 @media screen and (max-width: 600px) {

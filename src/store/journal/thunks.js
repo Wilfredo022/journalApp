@@ -52,6 +52,8 @@ export const startSaveNote = () => {
     const { uid } = getState().auth;
     const { active: notes } = getState().journal;
 
+    console.log(notes);
+
     const noteToFirestore = { ...notes };
     delete noteToFirestore.id;
 

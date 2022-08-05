@@ -41,40 +41,16 @@ export const RegisterPage = () => {
     });
   };
 
-  /* const {
-    formState,
-    email,
-    password,
-    displayName,
-    onInputChange,
-    isFormValid,
-    displayNameValid,
-    emailValid,
-    passwordValid,
-  } = useForm({
-    email: "",
-    password: "",
-    displayName: "",
-  }); */
-  // formValidations
-
   const handleRegister = (e) => {
     e.preventDefault();
 
     if (email === "" || displayName === "" || password === "") return;
-
-    /* if (email.includes("@")) {
-      console.log("email debe incluir @");
-      return;
-    } */
 
     if (password.length <= 6) return;
 
     if (displayName.length < 1) return;
 
     setFormSubmitted(true);
-
-    /* if (!isFormValid) return; */
 
     dispatch(startCreateUserEmailPassword(formValues));
   };

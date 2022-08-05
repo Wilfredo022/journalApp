@@ -8,14 +8,9 @@ import {
 } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.css";
-import { ImageGalery } from "../components";
 import { useForm } from "../../hooks/useForm";
 import { setActiveNote } from "../../store/journal/journalSlice";
-import {
-  startDeletingNote,
-  startSaveNote,
-  startUploadingFiles,
-} from "../../store/journal/thunks";
+import { startDeletingNote, startSaveNote } from "../../store/journal/thunks";
 
 export const NoteView = () => {
   const dispatch = useDispatch();
@@ -27,16 +22,17 @@ export const NoteView = () => {
 
   const { body, title, date, onInputChange, formState } = useForm(note);
 
+  console.log(formState);
+  console.log(title);
+
   const dateString = useMemo(() => {
     const newDate = new Date(date);
 
     return newDate.toUTCString();
   }, [date]);
 
-  const fileInputRef = useRef();
-
   useEffect(() => {
-    dispatch(setActiveNote(note));
+    dispatch(setActiveNote(formState));
   }, [formState]);
 
   useEffect(() => {
@@ -47,12 +43,6 @@ export const NoteView = () => {
 
   const onSaveNote = () => {
     dispatch(startSaveNote());
-  };
-
-  const onFileInputChange = ({ target }) => {
-    if (target.files === 0) return;
-
-    dispatch(startUploadingFiles(target.files));
   };
 
   const onDelete = () => {
@@ -75,22 +65,6 @@ export const NoteView = () => {
       </Grid>
 
       <Grid item>
-        <input
-          type="file"
-          multiple
-          ref={fileInputRef}
-          onChange={onFileInputChange}
-          style={{ display: "none" }}
-        />
-
-        <IconButton
-          color="primary"
-          disabled={isSaving}
-          onClick={() => fileInputRef.current.click()}
-        >
-          <UploadOutlined />
-        </IconButton>
-
         <Button onClick={onSaveNote} sx={{ color: "primary", p: 2 }}>
           <SaveOutlined sx={{ md: { fontSize: 35 }, mr: 1 }} />
           Saved
@@ -131,8 +105,6 @@ export const NoteView = () => {
           Delete
         </Button>
       </Grid>
-
-      {note?.imageUrls?.length > 0 && <ImageGalery images={note?.imageUrls} />}
     </Grid>
   );
 };

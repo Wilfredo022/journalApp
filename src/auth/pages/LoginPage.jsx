@@ -48,14 +48,14 @@ export const LoginPage = () => {
     }
   };
 
-  const handleGoogle = () => {
+  /* const handleGoogle = () => {
     console.log("google singIn");
     try {
       dispatch(startGoogleSignIn());
     } catch (error) {
       console.log(error);
     }
-  };
+  }; */
 
   return (
     <AuthLayout title="Login">
@@ -97,7 +97,7 @@ export const LoginPage = () => {
           </Grid>
 
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <Button
                 disabled={isAuthenticating}
                 type="submit"
@@ -108,7 +108,7 @@ export const LoginPage = () => {
               </Button>
             </Grid>
 
-            <Grid item xs={12} sm={6}>
+            {/* <Grid item xs={12} sm={6}>
               <Button
                 disabled={isAuthenticating}
                 onClick={handleGoogle}
@@ -118,7 +118,7 @@ export const LoginPage = () => {
                 <Google />
                 <Typography sx={{ ml: 1 }}>Google</Typography>
               </Button>
-            </Grid>
+            </Grid> */}
           </Grid>
 
           <Grid container direction="row" justifyContent="end">

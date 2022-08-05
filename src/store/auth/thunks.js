@@ -46,8 +46,7 @@ export const startCreateUserEmailPassword = ({
 
     if (!ok) {
       dispatch(logout());
-      Swal.fire("Error", "Error registering", "error");
-      return;
+      return Swal.fire("Error", "Error registering", "error");
     }
 
     dispatch(login({ uid, photoURL, email, displayName }));
